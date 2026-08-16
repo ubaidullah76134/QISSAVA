@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/S-L.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOGIN HEADER
+========================= -->
+
+<header class="login-header">
+
+    <a
+        href="index.html"
+        class="login-back"
+    >
+        🔙
+    </a>
+
+    <div class="login-header-title">
+        Login
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<main class="login-container">
+
+    <div class="login-card">
+
+
+        <!-- Logo -->
+
+        <div class="login-logo">
+
+            <img
+                src="images/qissava-logo.png"
+                alt="QISSAVA"
+            >
+
+        </div>
+
+
+        <h1>
+            Welcome Back
+        </h1>
+
+
+        <p class="login-subtitle">
+            Login to continue to QISSAVA.
+        </p>
+
+
+
+        <!-- Login Form -->
+
+        <form id="loginForm">
+
+
+            <!-- Email -->
+
+            <label for="loginEmail">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+
+
+            <!-- Password -->
+
+            <label for="loginPassword">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
+
+
+<a
+    href="forgot-password.html"
+    class="forgot-link"
+>
+    Forgot Password?
+</a>
+
+
+            <!-- Login Button -->
+
+            <button
+                type="submit"
+                class="login-submit"
+            >
+                Login
+            </button>
+
+
+        </form>
+
+
+
+        <!-- Signup -->
+
+        <p class="create-account">
+
+            Don't have an account?
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+        </p>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+const loginForm =
+    document.getElementById("loginForm");
+
+
+loginForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document
+                .getElementById("loginEmail")
+                .value
+                .trim()
+                .toLowerCase();
+
+
+        const password =
+            document
+                .getElementById("loginPassword")
+                .value;
+
+
+        /* Load users */
+
+        let users = [];
+
+        try {
+
+            users =
+                JSON.parse(
+                    localStorage.getItem(
+                        "qissavaUsers"
+                    )
+                ) || [];
+
+        } catch(error) {
+
+            users = [];
+
+        }
+
+
+        /* Find user */
+
+        const user =
+            users.find(
+                function(item) {
+
+                    return (
+                        item.email === email &&
+                        item.password === password
+                    );
+
+                }
+            );
+
+
+        /* Login failed */
+
+        if (!user) {
+
+            alert(
+                "Email ya password ghalat hai."
+            );
+
+            return;
+
+        }
+
+
+        /* Save logged-in user */
+
+        localStorage.setItem(
+            "qissavaLoggedInUser",
+            JSON.stringify({
+                id: user.id,
+                name: user.name,
+                email: user.email
+            })
+        );
+
+
+        alert(
+            "Login successful!"
+        );
+
+
+localStorage.setItem("isLoggedIn", "true");
+
+window.location.href = "index.html";
+
+        /* Go Home */
+
+        window.location.href =
+            "index.html";
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

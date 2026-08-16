@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Search Stories - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/like-comments.css"
+    >
+
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="stories-header">
+
+    <a
+        href="index.html"
+        class="stories-back"
+        aria-label="Back"
+    >
+        🔙
+    </a>
+
+
+    <div class="stories-header-title">
+        
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="search-stories-page">
+
+
+    <section class="search-stories-title">
+
+        <h1>
+            Search Stories
+        </h1>
+
+        <p>
+            Find stories by title or text.
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SEARCH BOX
+    ================================================= -->
+
+    <div class="search-stories-box">
+
+        <span class="search-stories-icon">
+            🔍
+        </span>
+
+
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search stories..."
+            autocomplete="off"
+        >
+
+
+        <button
+            type="button"
+            id="clearSearch"
+            class="clear-search"
+            aria-label="Clear search"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESULT INFO
+    ================================================= -->
+
+    <div
+        id="resultInfo"
+        class="search-result-info"
+    >
+        All stories
+    </div>
+
+
+
+    <!-- =================================================
+         RESULTS
+    ================================================= -->
+
+    <section
+        id="searchResults"
+        class="search-results-grid"
+    >
+
+    </section>
+
+
+
+    <!-- =================================================
+         EMPTY
+    ================================================= -->
+
+    <div
+        id="searchEmpty"
+        class="search-stories-empty"
+    >
+
+        <div class="search-empty-icon">
+            🔍
+        </div>
+
+
+        <h2>
+            No stories found
+        </h2>
+
+
+        <p>
+            Try another search.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+
+const clearSearch =
+    document.getElementById(
+        "clearSearch"
+    );
+
+
+const searchResults =
+    document.getElementById(
+        "searchResults"
+    );
+
+
+const searchEmpty =
+    document.getElementById(
+        "searchEmpty"
+    );
+
+
+const resultInfo =
+    document.getElementById(
+        "resultInfo"
+    );
+
+
+
+/* =====================================================
+   LOAD STORIES
+===================================================== */
+
+function getStories() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "myStories"
+            )
+        ) || [];
+
+    }
+
+    catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+let stories =
+    getStories();
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   GET LIKES
+===================================================== */
+
+function getLikes(storyId) {
+
+    let likes = {};
+
+    try {
+
+        likes =
+            JSON.parse(
+                localStorage.getItem(
+                    "storyLikes"
+                )
+            ) || {};
+
+    }
+
+    catch (error) {
+
+        likes = {};
+
+    }
+
+
+    return likes[storyId] || 0;
+
+}
+
+
+
+/* =====================================================
+   GET COMMENTS
+===================================================== */
+
+function getComments(storyId) {
+
+    let comments = {};
+
+    try {
+
+        comments =
+            JSON.parse(
+                localStorage.getItem(
+                    "storyComments"
+                )
+            ) || {};
+
+    }
+
+    catch (error) {
+
+        comments = {};
+
+    }
+
+
+    return comments[storyId] || [];
+
+}
+
+
+
+/* =====================================================
+   CHECK LIKED
+===================================================== */
+
+function isLiked(storyId) {
+
+    let likedStories = [];
+
+    try {
+
+        likedStories =
+            JSON.parse(
+                localStorage.getItem(
+                    "likedStories"
+                )
+            ) || [];
+
+    }
+
+    catch (error) {
+
+        likedStories = [];
+
+    }
+
+
+    return likedStories.includes(
+        storyId
+    );
+
+}
+
+
+
+/* =====================================================
+   RENDER RESULTS
+===================================================== */
+
+function renderResults(list) {
+
+    searchResults.innerHTML = "";
+
+
+    resultInfo.textContent =
+        list.length +
+        (
+            list.length === 1
+                ? " story found"
+                : " stories found"
+        );
+
+
+    if (!list.length) {
+
+        searchEmpty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    searchEmpty.style.display =
+        "none";
+
+
+
+    list.forEach(
+        function(story) {
+
+
+            const likes =
+                getLikes(
+                    story.id
+                );
+
+
+            const comments =
+                getComments(
+                    story.id
+                );
+
+
+            const liked =
+                isLiked(
+                    story.id
+                );
+
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "search-story-card";
+
+
+
+            card.innerHTML = `
+
+                <button
+                    type="button"
+                    class="search-story-image"
+                    onclick="openStory(${story.id})"
+                >
+
+                    <img
+                        src="${story.image}"
+                        alt="${escapeHTML(story.title)}"
+                    >
+
+                </button>
+
+
+
+                <div
+                    class="search-story-content"
+                >
+
+                    <button
+                        type="button"
+                        class="search-story-title"
+                        onclick="openStory(${story.id})"
+                    >
+
+                        ${escapeHTML(story.title)}
+
+                    </button>
+
+
+
+                    <p
+                        class="search-story-text"
+                    >
+                        ${escapeHTML(
+                            String(story.text || "")
+                                .substring(0, 100)
+                        )}
+                        ${String(story.text || "").length > 100 ? "..." : ""}
+                    </p>
+
+
+
+                    <div
+                        class="search-story-actions"
+                    >
+
+                        <a
+                            href="like.html?id=${story.id}"
+                            class="search-like-btn ${liked ? "liked" : ""}"
+                        >
+
+                            ${liked ? "❤️" : "🤍"}
+
+                            ${likes}
+
+                        </a>
+
+
+                        <a
+                            href="comments.html?id=${story.id}"
+                            class="search-comment-btn"
+                        >
+
+                            💬
+
+                            ${comments.length}
+
+                        </a>
+
+                    </div>
+
+
+
+                    <button
+                        type="button"
+                        class="search-read-btn"
+                        onclick="openStory(${story.id})"
+                    >
+                        Read Story
+                    </button>
+
+                </div>
+
+            `;
+
+
+            searchResults.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+
+function performSearch() {
+
+    const keyword =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    /* Empty search */
+
+    if (!keyword) {
+
+        searchResults.innerHTML = "";
+
+        searchEmpty.style.display =
+            "none";
+
+        resultInfo.textContent =
+            "Search for a story";
+
+        clearSearch.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    /* Search active */
+
+    clearSearch.style.display =
+        "block";
+
+
+    const filtered =
+        stories.filter(
+            function(story) {
+
+                const title =
+                    String(
+                        story.title || ""
+                    ).toLowerCase();
+
+
+                const text =
+                    String(
+                        story.text || ""
+                    ).toLowerCase();
+
+
+                return (
+                    title.includes(keyword) ||
+                    text.includes(keyword)
+                );
+
+            }
+        );
+
+
+    renderResults(filtered);
+
+}
+
+
+
+/* =====================================================
+   SEARCH INPUT
+===================================================== */
+
+searchInput.addEventListener(
+    "input",
+    performSearch
+);
+
+
+
+/* =====================================================
+   CLEAR SEARCH
+===================================================== */
+
+clearSearch.addEventListener(
+    "click",
+    function() {
+
+        searchInput.value = "";
+
+        searchInput.focus();
+
+        performSearch();
+
+    }
+);
+
+
+
+/* =====================================================
+   OPEN STORY
+===================================================== */
+
+function openStory(storyId) {
+
+    window.location.href =
+        "stories.html";
+
+}
+
+
+
+/* =====================================================
+   STORAGE UPDATE
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key === "myStories" ||
+            event.key === "storyLikes" ||
+            event.key === "likedStories" ||
+            event.key === "storyComments"
+        ) {
+
+            stories =
+                getStories();
+
+
+            performSearch();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+/* Page open hone par stories show nahi hongi */
+
+searchResults.innerHTML = "";
+
+searchEmpty.style.display = "none";
+
+resultInfo.textContent =
+    "Search for a story";
+
+clearSearch.style.display =
+    "none";
+
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Comments - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/like-comments.css"
+    >
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="stories-header">
+
+    <a
+        href="stories.html"
+        class="stories-back"
+        aria-label="Back"
+    >
+        🔙
+    </a>
+
+
+    <div class="stories-header-title">
+       
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="comments-page">
+
+
+    <!-- Story Preview -->
+
+    <section
+        id="storyPreview"
+        class="comment-story-preview"
+    >
+
+    </section>
+
+
+
+    <!-- Comments Title -->
+
+    <div class="comments-page-title">
+
+        <h1>
+            💬 Comments
+        </h1>
+
+        <p id="commentCountText">
+            0 comments
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         COMMENTS LIST
+    ================================================= -->
+
+    <section
+        id="commentsList"
+        class="comments-page-list"
+    >
+
+    </section>
+
+
+
+    <!-- Empty -->
+
+    <div
+        id="noComments"
+        class="comments-page-empty"
+    >
+
+        <div>
+            💬
+        </div>
+
+        <h2>
+            No comments yet
+        </h2>
+
+        <p>
+            Be the first to comment.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         COMMENT FORM
+    ================================================= -->
+
+    <form
+        id="commentForm"
+        class="comments-page-form"
+    >
+
+        <input
+            type="text"
+            id="commentInput"
+            placeholder="Write a comment..."
+            maxlength="500"
+            autocomplete="off"
+        >
+
+
+        <button
+            type="submit"
+        >
+            Send
+        </button>
+
+    </form>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+   GET STORY ID
+===================================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const storyId =
+    Number(
+        urlParams.get("id")
+    );
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const storyPreview =
+    document.getElementById(
+        "storyPreview"
+    );
+
+
+const commentsList =
+    document.getElementById(
+        "commentsList"
+    );
+
+
+const noComments =
+    document.getElementById(
+        "noComments"
+    );
+
+
+const commentForm =
+    document.getElementById(
+        "commentForm"
+    );
+
+
+const commentInput =
+    document.getElementById(
+        "commentInput"
+    );
+
+
+const commentCountText =
+    document.getElementById(
+        "commentCountText"
+    );
+
+
+
+/* =====================================================
+   LOAD STORIES
+===================================================== */
+
+function getStories() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "myStories"
+            )
+        ) || [];
+
+    }
+
+    catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+const stories =
+    getStories();
+
+
+
+/* =====================================================
+   FIND STORY
+===================================================== */
+
+const story =
+    stories.find(
+        function(item) {
+
+            return (
+                Number(item.id) ===
+                Number(storyId)
+            );
+
+        }
+    );
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   GET COMMENTS
+===================================================== */
+
+function getAllComments() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "storyComments"
+            )
+        ) || {};
+
+    }
+
+    catch (error) {
+
+        return {};
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHOW STORY
+===================================================== */
+
+function showStory() {
+
+    if (!story) {
+
+        storyPreview.innerHTML = `
+
+            <div class="comment-story-not-found">
+
+                <div>
+                    📖
+                </div>
+
+                <h2>
+                    Story not found
+                </h2>
+
+                <a
+                    href="stories.html"
+                >
+                    Back to Stories
+                </a>
+
+            </div>
+
+        `;
+
+
+        commentForm.style.display =
+            "none";
+
+
+        return;
+
+    }
+
+
+
+    storyPreview.innerHTML = `
+
+        <div class="comment-story-image">
+
+            <img
+                src="${story.image}"
+                alt="${escapeHTML(story.title)}"
+            >
+
+        </div>
+
+
+        <div class="comment-story-info">
+
+            <h2>
+                ${escapeHTML(story.title)}
+            </h2>
+
+
+            <button
+                type="button"
+                class="comment-read-button"
+                onclick="readStory()"
+            >
+                Read Story
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   DISPLAY COMMENTS
+===================================================== */
+
+function renderComments() {
+
+    commentsList.innerHTML = "";
+
+
+    if (!story) {
+
+        return;
+
+    }
+
+
+    const allComments =
+        getAllComments();
+
+
+    const comments =
+        allComments[storyId] || [];
+
+
+
+    /* Count */
+
+    commentCountText.textContent =
+        comments.length +
+        (
+            comments.length === 1
+                ? " comment"
+                : " comments"
+        );
+
+
+
+    /* Empty */
+
+    if (!comments.length) {
+
+        noComments.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    noComments.style.display =
+        "none";
+
+
+
+    /* Comments */
+
+    comments.forEach(
+        function(comment, index) {
+
+
+            const item =
+                document.createElement(
+                    "article"
+                );
+
+
+            item.className =
+                "comment-page-item";
+
+
+            item.innerHTML = `
+
+                <div class="comment-page-avatar">
+                    👤
+                </div>
+
+
+                <div class="comment-page-body">
+
+                    <div class="comment-page-user">
+                        User
+                    </div>
+
+
+                    <div class="comment-page-text">
+                        ${escapeHTML(comment.text)}
+                    </div>
+
+
+                    <div class="comment-page-date">
+                        ${formatDate(comment.date)}
+                    </div>
+
+                </div>
+
+            `;
+
+
+            commentsList.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   ADD COMMENT
+===================================================== */
+
+commentForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        if (!story) {
+
+            return;
+
+        }
+
+
+        const text =
+            commentInput.value
+                .trim();
+
+
+        if (!text) {
+
+            commentInput.focus();
+
+            return;
+
+        }
+
+
+
+        let allComments =
+            getAllComments();
+
+
+        if (
+            !allComments[storyId]
+        ) {
+
+            allComments[storyId] =
+                [];
+
+        }
+
+
+
+        allComments[storyId].push({
+
+            text: text,
+
+            date:
+                new Date()
+                    .toISOString()
+
+        });
+
+
+
+        localStorage.setItem(
+            "storyComments",
+            JSON.stringify(
+                allComments
+            )
+        );
+
+
+
+        commentInput.value =
+            "";
+
+
+        renderComments();
+
+
+        commentInput.focus();
+
+    }
+);
+
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    if (!date) {
+
+        return "";
+
+    }
+
+
+    const d =
+        new Date(date);
+
+
+    if (
+        Number.isNaN(
+            d.getTime()
+        )
+    ) {
+
+        return "";
+
+    }
+
+
+    return d.toLocaleString();
+
+}
+
+
+
+/* =====================================================
+   READ STORY
+===================================================== */
+
+function readStory() {
+
+    if (!story) {
+
+        return;
+
+    }
+
+
+    const image =
+        encodeURIComponent(
+            story.image
+        );
+
+
+    const title =
+        encodeURIComponent(
+            story.title
+        );
+
+
+    const text =
+        encodeURIComponent(
+            story.text
+        );
+
+
+    window.location.href =
+        "stories.html";
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+showStory();
+
+renderComments();
+
+</script>
+
+
+</body>
+
+</html>

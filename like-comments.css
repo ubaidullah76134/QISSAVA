@@ -1,0 +1,1377 @@
+/* =====================================================
+   LIKE PAGE
+===================================================== */
+
+.likes-page {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 30px 18px 50px;
+
+}
+
+
+.likes-title h1 {
+
+    margin: 0 0 8px;
+
+    font-size: 34px;
+
+}
+
+
+.likes-title p {
+
+    margin: 0 0 25px;
+
+    color: #666;
+
+    font-size: 17px;
+
+}
+
+
+/* LIKE COUNT */
+
+.like-count-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 22px;
+
+    border: 1px solid #e3e3e3;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.07);
+
+}
+
+
+.big-heart {
+
+    font-size: 45px;
+
+}
+
+
+.like-number {
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+
+.like-label {
+
+    color: #777;
+
+    font-size: 15px;
+
+}
+
+
+/* LIKE BUTTON */
+
+.main-like-button {
+
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 18px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.main-like-button span:first-child {
+
+    margin-right: 7px;
+
+}
+
+
+.main-like-button.liked {
+
+    background: #e91e3a;
+
+}
+
+
+.main-like-button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* MESSAGE */
+
+.liked-message {
+
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 13px;
+
+    border-radius: 9px;
+
+    background: #fff0f2;
+
+    color: #d91e36;
+
+    text-align: center;
+
+    font-size: 15px;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .likes-page {
+
+        padding:
+            25px 14px 40px;
+
+    }
+
+
+    .likes-title h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .like-count-card {
+
+        padding: 18px;
+
+    }
+
+}
+
+
+/* =====================================================
+   COMMENTS PAGE
+===================================================== */
+
+.comments-page {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    padding: 25px 15px 90px;
+
+}
+
+
+.comments-page-title {
+
+    margin: 22px 0;
+
+}
+
+
+.comments-page-title h1 {
+
+    margin: 0 0 5px;
+
+    font-size: 28px;
+
+}
+
+
+.comments-page-title p {
+
+    margin: 0;
+
+    color: #777;
+
+}
+
+
+
+/* STORY PREVIEW */
+
+.comment-story-preview {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border: 1px solid #e2e2e2;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+}
+
+
+.comment-story-image {
+
+    width: 75px;
+
+    height: 75px;
+
+    flex-shrink: 0;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+}
+
+
+.comment-story-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.comment-story-info {
+
+    min-width: 0;
+
+}
+
+
+.comment-story-info h2 {
+
+    margin: 0 0 8px;
+
+    font-size: 17px;
+
+}
+
+
+.comment-read-button {
+
+    border: none;
+
+    background: #123b91;
+
+    color: #fff;
+
+    border-radius: 6px;
+
+    padding: 7px 11px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* COMMENTS LIST */
+
+.comments-page-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.comment-page-item {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.comment-page-avatar {
+
+    width: 40px;
+
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+}
+
+
+.comment-page-body {
+
+    max-width: calc(100% - 50px);
+
+    padding: 10px 13px;
+
+    border-radius: 14px;
+
+    background: #f0f2f5;
+
+}
+
+
+.comment-page-user {
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.comment-page-text {
+
+    font-size: 15px;
+
+    line-height: 1.45;
+
+    word-break: break-word;
+
+}
+
+
+.comment-page-date {
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: #777;
+
+}
+
+
+
+/* EMPTY */
+
+.comments-page-empty {
+
+    text-align: center;
+
+    padding: 45px 15px;
+
+    color: #777;
+
+}
+
+
+.comments-page-empty > div {
+
+    font-size: 45px;
+
+}
+
+
+.comments-page-empty h2 {
+
+    margin: 8px 0 5px;
+
+    font-size: 21px;
+
+}
+
+
+.comments-page-empty p {
+
+    margin: 0;
+
+}
+
+
+
+/* NOT FOUND */
+
+.comment-story-not-found {
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 25px;
+
+}
+
+
+.comment-story-not-found > div {
+
+    font-size: 45px;
+
+}
+
+
+.comment-story-not-found h2 {
+
+    margin: 8px 0 15px;
+
+}
+
+
+.comment-story-not-found a {
+
+    display: inline-block;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    background: #123b91;
+
+    color: #fff;
+
+    text-decoration: none;
+
+}
+
+
+
+/* COMMENT FORM */
+
+.comments-page-form {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #dddddd;
+
+}
+
+
+.comments-page-form input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 45px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 23px;
+
+    padding: 0 15px;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+
+.comments-page-form input:focus {
+
+    border-color: #123b91;
+
+}
+
+
+.comments-page-form button {
+
+    height: 45px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 23px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+@media (max-width: 600px) {
+
+    .comments-page {
+
+        padding:
+            20px 12px 85px;
+
+    }
+
+
+    .comments-page-title h1 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+/* =====================================================
+   SEARCH STORIES PAGE
+===================================================== */
+
+.search-stories-page {
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 28px 15px 50px;
+
+}
+
+
+.search-stories-title h1 {
+
+    margin: 0 0 7px;
+
+    font-size: 34px;
+
+}
+
+
+.search-stories-title p {
+
+    margin: 0 0 22px;
+
+    color: #666;
+
+    font-size: 17px;
+
+}
+
+
+
+/* SEARCH BOX */
+
+.search-stories-box {
+
+    width: 100%;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 12px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    margin-bottom: 18px;
+
+}
+
+
+.search-stories-icon {
+
+    flex-shrink: 0;
+
+    font-size: 23px;
+
+}
+
+
+.search-stories-box input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 17px;
+
+}
+
+
+.clear-search {
+
+    width: 32px;
+
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #555;
+
+    font-size: 23px;
+
+    line-height: 28px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* RESULT INFO */
+
+.search-result-info {
+
+    margin-bottom: 15px;
+
+    color: #666;
+
+    font-size: 15px;
+
+}
+
+
+
+/* GRID */
+
+.search-results-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+}
+
+
+
+/* CARD */
+
+.search-story-card {
+
+    overflow: hidden;
+
+    border: 1px solid #e3e3e3;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 3px 12px
+        rgba(0, 0, 0, 0.07);
+
+}
+
+
+.search-story-image {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    cursor: pointer;
+
+}
+
+
+.search-story-image img {
+
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+}
+
+
+.search-story-content {
+
+    padding: 11px;
+
+}
+
+
+.search-story-title {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    text-align: left;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+    cursor: pointer;
+
+}
+
+
+.search-story-text {
+
+    margin: 7px 0 10px;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+}
+
+
+
+/* ACTIONS */
+
+.search-story-actions {
+
+    display: flex;
+
+    gap: 7px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.search-like-btn,
+.search-comment-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    min-height: 37px;
+
+    padding: 5px 10px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 20px;
+
+    background: #f8f8f8;
+
+    color: #222;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+}
+
+
+.search-like-btn.liked {
+
+    background: #fff0f2;
+
+    border-color: #ffc8d0;
+
+}
+
+
+
+/* READ */
+
+.search-read-btn {
+
+    width: 100%;
+
+    min-height: 40px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+
+/* EMPTY */
+
+.search-stories-empty {
+
+    display: none;
+
+    padding: 60px 15px;
+
+    text-align: center;
+
+    color: #777;
+
+}
+
+
+.search-empty-icon {
+
+    font-size: 50px;
+
+}
+
+
+.search-stories-empty h2 {
+
+    margin: 10px 0 5px;
+
+}
+
+
+.search-stories-empty p {
+
+    margin: 0;
+
+}
+
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .search-stories-page {
+
+        padding:
+            22px 12px 45px;
+
+    }
+
+
+    .search-stories-title h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .search-results-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 11px;
+
+    }
+
+
+    .search-story-content {
+
+        padding: 8px;
+
+    }
+
+
+    .search-story-title {
+
+        font-size: 15px;
+
+    }
+
+
+    .search-story-text {
+
+        font-size: 12px;
+
+    }
+
+
+    .search-like-btn,
+    .search-comment-btn {
+
+        min-height: 34px;
+
+        padding: 4px 7px;
+
+        font-size: 12px;
+
+    }
+
+
+    .search-read-btn {
+
+        min-height: 37px;
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SEARCH STORIES - FIXED MOBILE GRID
+===================================================== */
+
+.search-stories-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 16px 50px;
+}
+
+.search-stories-title h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.search-stories-title p {
+    margin: 0 0 22px;
+    color: #666;
+    font-size: 17px;
+}
+
+
+/* SEARCH BOX */
+
+.search-stories-box {
+    width: 100%;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background: #fff;
+}
+
+.search-stories-icon {
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.search-stories-box input {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-size: 17px;
+
+    background: transparent;
+}
+
+.clear-search {
+    display: none;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #eee;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* RESULT TEXT */
+
+.search-result-info {
+    margin: 18px 0;
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   STORY GRID
+===================================================== */
+
+.search-results-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    width: 100%;
+}
+
+
+/* =====================================================
+   STORY CARD
+===================================================== */
+
+.search-story-card {
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    background: #fff;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+}
+
+
+/* IMAGE */
+
+.search-story-image {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.search-story-image img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+}
+
+
+/* CONTENT */
+
+.search-story-content {
+
+    padding: 10px;
+}
+
+
+.search-story-title {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    cursor: pointer;
+}
+
+
+.search-story-text {
+
+    margin: 7px 0;
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   LIKE + COMMENT
+===================================================== */
+
+.search-story-actions {
+
+    display: flex;
+
+    gap: 6px;
+
+    margin: 8px 0;
+}
+
+
+.search-like-btn,
+.search-comment-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    min-height: 34px;
+
+    padding: 4px 9px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 18px;
+
+    background: #f7f7f7;
+
+    color: #222;
+
+    text-decoration: none;
+
+    font-size: 13px;
+}
+
+
+.search-like-btn.liked {
+
+    background: #fff0f2;
+
+}
+
+
+/* READ BUTTON */
+
+.search-read-btn {
+
+    width: 100%;
+
+    min-height: 36px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #123b91;
+
+    color: #fff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* EMPTY */
+
+.search-stories-empty {
+
+    display: none;
+
+    padding: 50px 15px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .search-stories-page {
+
+        padding:
+            22px 12px 45px;
+    }
+
+
+    .search-stories-title h1 {
+
+        font-size: 30px;
+    }
+
+
+    .search-stories-title p {
+
+        font-size: 16px;
+    }
+
+
+    .search-results-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .search-story-image img {
+
+        height: 150px;
+    }
+
+
+    .search-story-content {
+
+        padding: 8px;
+    }
+
+
+    .search-story-title {
+
+        font-size: 14px;
+    }
+
+
+    .search-story-text {
+
+        font-size: 12px;
+    }
+
+
+    .search-like-btn,
+    .search-comment-btn {
+
+        min-height: 32px;
+
+        padding:
+            3px 7px;
+
+        font-size: 12px;
+    }
+
+
+    .search-read-btn {
+
+        min-height: 34px;
+
+        font-size: 12px;
+    }
+
+}
+
+

@@ -1,0 +1,3239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111111;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    width: 100%;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 15px;
+
+    border-bottom: 1px solid #e5e5e5;
+
+    background: #ffffff;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.add-btn {
+    border: 1px solid #222222;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    padding: 8px 12px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 28px 15px 50px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    margin-bottom: 22px;
+}
+
+.intro h1 {
+    font-size: 30px;
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.intro p {
+    color: #555555;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 28px;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    height: 43px;
+
+    padding: 0 12px 0 42px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #ffffff;
+}
+
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.story-image-box {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    background: #ffffff;
+
+    padding: 0;
+}
+
+.story-image {
+    width: 100%;
+
+    max-width: 430px;
+
+    height: 270px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 0;
+}
+
+
+/* =========================
+   STORY CONTENT
+========================= */
+
+.story-content {
+    padding: 15px 0 0;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.story-title {
+    font-size: 22px;
+
+    font-weight: 700;
+
+    line-height: 1.6;
+
+    margin-bottom: 9px;
+
+    color: #111111;
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.story-text {
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    color: #333333;
+
+    margin-bottom: 15px;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.read-btn {
+    background: #111111;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 4px;
+
+    padding: 9px 15px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #eeeeee;
+
+    color: #b00000;
+
+    border: none;
+
+    border-radius: 4px;
+
+    padding: 9px 13px;
+
+    font-size: 14px;
+
+    margin-left: 5px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty-message {
+    display: none;
+
+    text-align: center;
+
+    padding: 40px 10px;
+
+    color: #777777;
+
+    font-size: 16px;
+}
+
+
+/* =========================
+   ADD STORY MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    z-index: 1000;
+
+    padding: 15px;
+
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+.modal-content {
+    width: 100%;
+
+    max-width: 500px;
+
+    background: #ffffff;
+
+    margin-top: 20px;
+
+    padding: 18px;
+
+    border-radius: 7px;
+}
+
+.modal-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    font-size: 22px;
+}
+
+.close-btn {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    font-size: 23px;
+
+    cursor: pointer;
+}
+
+
+/* Form */
+
+#storyForm label {
+    display: block;
+
+    margin: 13px 0 6px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+#storyForm input[type="file"],
+#storyForm input[type="text"],
+#storyForm textarea {
+    width: 100%;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+
+    padding: 10px;
+
+    outline: none;
+}
+
+#storyForm input[type="text"] {
+    height: 43px;
+}
+
+#storyForm textarea {
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+}
+
+.image-preview {
+    display: none;
+
+    margin-top: 10px;
+
+    text-align: center;
+}
+
+.image-preview img {
+    width: 100%;
+
+    max-height: 250px;
+
+    object-fit: contain;
+}
+
+.upload-btn {
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 18px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #111111;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   READ STORY
+========================= */
+
+.read-modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    z-index: 2000;
+
+    overflow-y: auto;
+}
+
+.read-modal.show {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+}
+
+.read-modal-content {
+    width: 100%;
+
+    max-width: 650px;
+
+    min-height: 100vh;
+
+    background: #ffffff;
+}
+
+.read-modal-header {
+    min-height: 58px;
+
+    padding: 10px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #dddddd;
+}
+
+.read-modal-header h2 {
+    font-size: 20px;
+
+    line-height: 1.5;
+}
+
+.read-close-btn {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.read-image {
+    width: 100%;
+
+    max-height: 450px;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.read-text {
+    padding: 20px 15px 40px;
+
+    font-size: 17px;
+
+    line-height: 1.9;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: break-word;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 55px;
+
+        padding: 0 12px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .add-btn {
+        padding: 7px 10px;
+
+        font-size: 13px;
+    }
+
+    .container {
+        padding: 24px 13px 45px;
+    }
+
+    .intro h1 {
+        font-size: 28px;
+    }
+
+    .story-image {
+        height: 240px;
+    }
+
+    .story-title {
+        font-size: 20px;
+    }
+
+    .story-text {
+        font-size: 15px;
+
+        line-height: 1.8;
+    }
+
+}
+
+/* =====================================
+   FINAL STORY CARD - MOBILE
+===================================== */
+
+.story-image-box {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+}
+
+
+/* Picture fixed size */
+
+.story-image {
+    width: 350px !important;
+    height: 450px !important;
+
+    max-width: calc(100vw - 70px) !important;
+
+    object-fit: cover !important;
+
+    display: block !important;
+
+    border: 15px solid #eeeeee !important;
+
+    border-radius: 0 !important;
+}
+
+
+/* Story content */
+
+.story-content {
+    width: 100% !important;
+
+    padding: 15px 0 25px !important;
+
+    text-align: left !important;
+}
+
+
+/* Title */
+
+.story-title {
+    margin: 0 0 15px !important;
+
+    font-size: 25px !important;
+
+    line-height: 1.7 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* Story text */
+
+.story-text {
+    margin: 0 0 20px !important;
+
+    font-size: 18px !important;
+
+    line-height: 1.9 !important;
+
+    text-align: left !important;
+
+    white-space: pre-wrap !important;
+}
+
+
+/* Urdu */
+
+.story-title[dir="rtl"],
+.story-text[dir="rtl"] {
+    direction: rtl !important;
+
+    text-align: right !important;
+}
+
+
+/* English */
+
+.story-title[dir="ltr"],
+.story-text[dir="ltr"] {
+    direction: ltr !important;
+
+    text-align: left !important;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .story-image {
+        width: 350px !important;
+
+        height: 450px !important;
+
+        max-width: calc(100vw - 70px) !important;
+    }
+
+    .story-title {
+        font-size: 23px !important;
+    }
+
+    .story-text {
+        font-size: 17px !important;
+
+        line-height: 1.9 !important;
+    }
+
+}
+
+/* =========================
+   HOME STORY = PICTURE + TITLE
+========================= */
+
+.story-card {
+    margin-bottom: 35px !important;
+}
+
+.story-image-box {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.story-image {
+    width: 350px !important;
+    height: 350px !important;
+
+    max-width: calc(100vw - 70px) !important;
+
+    object-fit: cover !important;
+
+    border: 15px solid #eeeeee !important;
+}
+
+
+/* Title */
+
+.story-content {
+    padding-top: 12px !important;
+}
+
+.story-title {
+    margin: 0 0 12px !important;
+
+    font-size: 24px !important;
+
+    line-height: 1.7 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* Hide story text on home */
+
+.story-card .story-text {
+    display: none !important;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .story-image {
+        width: 350px !important;
+        height: 350px !important;
+
+        max-width: calc(100vw - 70px) !important;
+    }
+
+    .story-title {
+        font-size: 22px !important;
+    }
+
+}
+
+/* =========================
+   HOME HEADER
+========================= */
+
+.header {
+    width: 100%;
+    height: 68px;
+
+    background: #123b91;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 18px;
+
+    gap: 20px;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+/* Logo */
+
+.header-logo {
+    color: #ffffff;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* Navigation */
+
+.header-nav {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-left: auto;
+}
+
+.header-nav a {
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    padding: 10px 12px;
+
+    border-radius: 4px;
+}
+
+.header-nav a.active,
+.header-nav a:hover {
+    background: rgba(255,255,255,0.18);
+}
+
+
+/* Add Story */
+
+.header .add-btn {
+    background: #ffffff;
+
+    color: #123b91;
+
+    border: none;
+
+    border-radius: 5px;
+
+    padding: 10px 14px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .header {
+        height: 60px;
+
+        padding: 0 10px;
+
+        gap: 8px;
+    }
+
+    .header-logo {
+        font-size: 21px;
+    }
+
+    .header-nav {
+        gap: 0;
+    }
+
+    .header-nav a {
+        font-size: 11px;
+
+        padding: 8px 7px;
+    }
+
+    .header .add-btn {
+        padding: 9px 10px;
+
+        font-size: 12px;
+    }
+
+}
+
+/* =========================
+   QISSAVA LOGO - BIGGER
+========================= */
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    width: 180px;
+    height: 58px;
+
+    overflow: hidden;
+}
+
+.header-logo img {
+    width: 180px;
+    height: auto;
+
+    display: block;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .header-logo {
+        width: 150px;
+        height: 55px;
+    }
+
+    .header-logo img {
+        width: 150px;
+    }
+
+}
+
+/* =========================
+   QISSAVA MENU PAGE
+========================= */
+
+.menu-header {
+
+    width: 100%;
+
+    height: 60px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+
+.menu-back {
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 32px;
+
+    width: 45px;
+
+}
+
+
+.menu-title {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+
+.menu-container {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 25px 15px 40px;
+
+}
+
+
+/* Logo */
+
+.menu-logo {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.menu-logo img {
+
+    width: 190px;
+
+    max-width: 70%;
+
+    height: auto;
+
+}
+
+
+/* Menu List */
+
+.menu-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+/* Menu Item */
+
+.menu-item {
+
+    width: 100%;
+
+    min-height: 58px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 12px 16px;
+
+    color: #222222;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-align: left;
+
+}
+
+
+.menu-item:hover {
+
+    background: #f2f5fb;
+
+}
+
+
+.menu-icon {
+
+    width: 35px;
+
+    font-size: 24px;
+
+    text-align: center;
+
+}
+
+
+.menu-button {
+
+    font-family: inherit;
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .menu-container {
+
+        padding: 20px 12px 35px;
+
+    }
+
+
+    .menu-logo img {
+
+        width: 170px;
+
+    }
+
+
+    .menu-item {
+
+        min-height: 55px;
+
+        font-size: 17px;
+
+    }
+
+}
+
+/* =========================
+   HEADER MENU BUTTON
+========================= */
+
+.menu-btn {
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 30px;
+
+    line-height: 1;
+
+    padding: 5px;
+
+    margin-left: 2px;
+
+}
+
+/* =========================
+   ADD STORY PAGE
+========================= */
+
+.add-story-header {
+
+    width: 100%;
+
+    height: 60px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+}
+
+
+.add-story-back {
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 32px;
+
+    width: 45px;
+
+}
+
+
+.add-story-header-title {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+}
+
+
+.add-story-container {
+
+    min-height: calc(100vh - 60px);
+
+    background: #f5f6f8;
+
+    padding: 25px 15px 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+.add-story-card {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 2px 10px
+        rgba(0,0,0,0.10);
+
+}
+
+
+.add-story-logo {
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+}
+
+
+.add-story-logo img {
+
+    width: 170px;
+
+    max-width: 75%;
+
+}
+
+
+.add-story-card h1 {
+
+    text-align: center;
+
+    margin: 10px 0 5px;
+
+    font-size: 27px;
+
+}
+
+
+.add-story-subtitle {
+
+    text-align: center;
+
+    color: #666666;
+
+    margin-bottom: 25px;
+
+}
+
+
+.add-story-card label {
+
+    display: block;
+
+    margin: 16px 0 7px;
+
+    font-weight: 600;
+
+}
+
+
+.add-story-card input[type="text"],
+.add-story-card input[type="file"] {
+
+    width: 100%;
+
+    min-height: 50px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 7px;
+
+    padding: 12px;
+
+    font-size: 16px;
+
+    background: #ffffff;
+
+}
+
+
+.add-story-card textarea {
+
+    width: 100%;
+
+    min-height: 180px;
+
+    resize: vertical;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 7px;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    outline: none;
+
+}
+
+
+.add-story-card input:focus,
+.add-story-card textarea:focus {
+
+    border-color: #123b91;
+
+    outline: none;
+
+}
+
+
+/* Image Preview */
+
+.story-preview {
+
+    display: none;
+
+    margin-top: 15px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+
+.story-preview:not(:empty) {
+
+    display: block;
+
+}
+
+
+.story-preview img {
+
+    width: 100%;
+
+    max-height: 350px;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+/* Publish Button */
+
+.publish-story-btn {
+
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 25px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.publish-story-btn:hover {
+
+    background: #0d2f75;
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .add-story-container {
+
+        padding: 15px 10px 30px;
+
+    }
+
+
+    .add-story-card {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .add-story-logo img {
+
+        width: 150px;
+
+    }
+
+
+    .add-story-card h1 {
+
+        font-size: 24px;
+
+    }
+
+}
+
+/* =====================================================
+   STORIES PAGE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #111111;
+}
+
+
+/* =====================================================
+   STORIES HEADER
+===================================================== */
+
+.stories-header {
+
+    width: 100%;
+    height: 62px;
+
+    background: #123b91;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    color: #ffffff;
+
+}
+
+
+.stories-back {
+
+    width: 45px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 36px;
+
+    line-height: 1;
+
+}
+
+
+.stories-header-title {
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.stories-page {
+
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 28px 18px 50px;
+
+}
+
+
+.stories-page-title {
+
+    margin-bottom: 22px;
+
+}
+
+
+.stories-page-title h1 {
+
+    margin: 0 0 8px;
+
+    font-size: 38px;
+
+    line-height: 1.15;
+
+}
+
+
+.stories-page-title p {
+
+    margin: 0;
+
+    color: #666666;
+
+    font-size: 19px;
+
+    line-height: 1.5;
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.stories-search {
+
+    width: 100%;
+
+    height: 54px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    padding: 0 14px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.search-symbol {
+
+    flex-shrink: 0;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+}
+
+
+.stories-search input {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 18px;
+
+    color: #222222;
+
+}
+
+
+.stories-search input::placeholder {
+
+    color: #777777;
+
+}
+
+
+
+/* =====================================================
+   STORIES GRID
+===================================================== */
+
+.stories-grid {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+}
+
+
+
+/* =====================================================
+   STORY CARD
+===================================================== */
+
+.story-tile {
+
+    width: 100%;
+
+    min-width: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e4e4e4;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.story-image-button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+}
+
+
+.story-tile-image {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #eeeeee;
+
+}
+
+
+.story-tile-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+}
+
+
+
+/* =====================================================
+   STORY CONTENT
+===================================================== */
+
+.story-tile-content {
+
+    padding: 12px;
+
+}
+
+
+.story-title-button {
+
+    width: 100%;
+
+    padding: 0;
+
+    margin: 0 0 12px;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+
+}
+
+
+.story-title-button h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+    line-height: 1.35;
+
+    font-weight: 700;
+
+    color: #111111;
+
+}
+
+
+
+/* =====================================================
+   LIKE + COMMENT
+===================================================== */
+
+.story-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.story-actions button {
+
+    min-height: 40px;
+
+    padding: 7px 12px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 22px;
+
+    background: #f8f8f8;
+
+    color: #222222;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+}
+
+
+.story-actions button:active {
+
+    transform: scale(0.96);
+
+}
+
+
+.story-actions .liked {
+
+    background: #fff0f2;
+
+    border-color: #ffc8d0;
+
+}
+
+
+.like-icon {
+
+    font-size: 18px;
+
+}
+
+
+
+/* =====================================================
+   READ STORY BUTTON
+===================================================== */
+
+.read-story-btn {
+
+    width: 100%;
+
+    min-height: 42px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.read-story-btn:active {
+
+    transform: scale(0.98);
+
+}
+
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.stories-empty {
+
+    display: none;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 60px 15px;
+
+    color: #666666;
+
+}
+
+
+.empty-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.stories-empty h2 {
+
+    margin: 0 0 6px;
+
+    font-size: 23px;
+
+}
+
+
+.stories-empty p {
+
+    margin: 0;
+
+    font-size: 16px;
+
+}
+
+
+
+/* =====================================================
+   READ STORY MODAL
+===================================================== */
+
+.story-read-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    background: rgba(0, 0, 0, 0.75);
+
+}
+
+
+.story-read-modal.show {
+
+    display: flex;
+
+}
+
+
+.story-read-box {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 650px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+}
+
+
+.story-read-close {
+
+    position: absolute;
+
+    top: 10px;
+
+    right: 10px;
+
+    z-index: 5;
+
+    width: 40px;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    line-height: 40px;
+
+    cursor: pointer;
+
+}
+
+
+.story-read-box > img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 450px;
+
+    object-fit: cover;
+
+}
+
+
+.story-read-content {
+
+    padding: 20px;
+
+}
+
+
+.story-read-content h2 {
+
+    margin: 0 0 15px;
+
+    font-size: 26px;
+
+}
+
+
+.story-read-content p {
+
+    margin: 0;
+
+    white-space: pre-wrap;
+
+    line-height: 1.7;
+
+    font-size: 17px;
+
+    color: #333333;
+
+}
+
+
+
+/* =====================================================
+   COMMENTS MODAL
+===================================================== */
+
+/*
+   IMPORTANT:
+   Comments page par normally HIDDEN rahega.
+*/
+
+.comments-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 6000;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+}
+
+
+.comments-modal.show {
+
+    display: flex;
+
+}
+
+
+.comments-box {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    height: 75vh;
+
+    background: #ffffff;
+
+    border-radius: 18px 18px 0 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+}
+
+
+
+/* =====================================================
+   COMMENTS HEADER
+===================================================== */
+
+.comments-header {
+
+    flex-shrink: 0;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 16px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.comments-header h2 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+}
+
+
+.comments-close {
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    color: #333333;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* =====================================================
+   COMMENTS LIST
+===================================================== */
+
+.comments-list {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 15px;
+
+}
+
+
+.no-comments {
+
+    padding: 25px 15px;
+
+    text-align: center;
+
+    color: #777777;
+
+}
+
+
+
+/* =====================================================
+   COMMENT ITEM
+===================================================== */
+
+.comment-item {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.comment-avatar {
+
+    width: 38px;
+
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #eeeeee;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+
+}
+
+
+.comment-body {
+
+    max-width: calc(100% - 50px);
+
+    padding: 9px 12px;
+
+    border-radius: 14px;
+
+    background: #f0f2f5;
+
+}
+
+
+.comment-user {
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+    margin-bottom: 3px;
+
+}
+
+
+.comment-text {
+
+    font-size: 15px;
+
+    line-height: 1.4;
+
+    word-break: break-word;
+
+}
+
+
+
+/* =====================================================
+   COMMENT FORM
+===================================================== */
+
+.comment-form {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-top: 1px solid #eeeeee;
+
+    background: #ffffff;
+
+}
+
+
+.comment-form input {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 22px;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+
+.comment-form input:focus {
+
+    border-color: #123b91;
+
+}
+
+
+.comment-form button {
+
+    height: 44px;
+
+    padding: 0 17px;
+
+    border: none;
+
+    border-radius: 22px;
+
+    background: #123b91;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+
+    .stories-header {
+
+        height: 58px;
+
+        padding: 0 12px;
+
+    }
+
+
+    .stories-back {
+
+        font-size: 32px;
+
+        width: 42px;
+
+    }
+
+
+    .stories-header-title {
+
+        font-size: 22px;
+
+    }
+
+
+    .stories-page {
+
+        padding: 22px 12px 40px;
+
+    }
+
+
+    .stories-page-title h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .stories-page-title p {
+
+        font-size: 17px;
+
+    }
+
+
+    .stories-search {
+
+        height: 52px;
+
+        margin-bottom: 20px;
+
+    }
+
+
+    /*
+       2 COLUMN STORY GRID
+    */
+
+    .stories-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 12px;
+
+    }
+
+
+    .story-tile {
+
+        border-radius: 10px;
+
+    }
+
+
+    .story-tile-content {
+
+        padding: 9px;
+
+    }
+
+
+    .story-title-button {
+
+        margin-bottom: 9px;
+
+    }
+
+
+    .story-title-button h2 {
+
+        font-size: 15px;
+
+    }
+
+
+    .story-actions {
+
+        gap: 5px;
+
+        margin-bottom: 8px;
+
+    }
+
+
+    .story-actions button {
+
+        min-height: 36px;
+
+        padding: 5px 9px;
+
+        font-size: 13px;
+
+    }
+
+
+    .read-story-btn {
+
+        min-height: 38px;
+
+        font-size: 13px;
+
+    }
+
+
+    .comments-box {
+
+        height: 80vh;
+
+        border-radius: 16px 16px 0 0;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+
+    .stories-page {
+
+        padding-left: 9px;
+
+        padding-right: 9px;
+
+    }
+
+
+    .stories-grid {
+
+        gap: 9px;
+
+    }
+
+
+    .story-tile-content {
+
+        padding: 8px;
+
+    }
+
+
+    .story-title-button h2 {
+
+        font-size: 14px;
+
+    }
+
+
+    .story-actions button {
+
+        padding: 5px 7px;
+
+        font-size: 12px;
+
+    }
+
+
+    .read-story-btn {
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =================================
+   SEARCH BOX - ICON INSIDE
+================================= */
+
+.search-box {
+    width: 100%;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    margin: 20px 0 30px;
+
+    padding: 0 16px;
+
+    background: #fff;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+}
+
+
+/* Search icon */
+
+.search-box .search-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 32px;
+    height: 32px;
+
+    margin-right: 8px;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    position: static;
+}
+
+
+/* Search input */
+
+.search-box input {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    height: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    font-size: 18px;
+
+    color: #222;
+}
+
+
+.search-box input::placeholder {
+    color: #777;
+}
+
+
+/* Remove browser focus border */
+
+.search-box:focus-within {
+    border-color: #777;
+}
+
+
+
+/* =========================================
+   STORIES - SMALL GRID VIEW
+========================================= */
+
+.stories-container {
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin: 20px auto;
+}
+
+
+/* Story Card */
+
+.story-card {
+    width: 100% !important;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 7px rgba(0,0,0,0.10);
+
+    margin: 0 !important;
+}
+
+
+/* Story Image */
+
+.story-image-box {
+    width: 100%;
+
+    height: 150px;
+
+    overflow: hidden;
+
+    background: #eee;
+}
+
+
+.story-image {
+    display: block;
+
+    width: 100% !important;
+
+    height: 150px !important;
+
+    object-fit: cover;
+
+    margin: 0 !important;
+}
+
+
+/* Story Content */
+
+.story-content {
+    padding: 9px;
+}
+
+
+.story-title {
+    margin: 0 0 8px;
+
+    font-size: 16px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+}
+
+
+/* Hide story text on home */
+
+.story-text {
+    display: none;
+}
+
+
+/* Buttons */
+
+.read-btn,
+.delete-btn {
+    min-height: 34px;
+
+    padding: 6px 9px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.read-btn {
+    background: #123b91;
+
+    color: white;
+}
+
+
+.delete-btn {
+    background: #eee;
+
+    color: #c00;
+
+    margin-left: 4px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .stories-container {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        padding: 0 2px;
+    }
+
+
+    .story-image-box {
+
+        height: 135px;
+    }
+
+
+    .story-image {
+
+        height: 135px !important;
+    }
+
+
+    .story-content {
+
+        padding: 8px;
+    }
+
+
+    .story-title {
+
+        font-size: 14px;
+    }
+
+
+    .read-btn,
+    .delete-btn {
+
+        font-size: 11px;
+
+        padding: 5px 7px;
+    }
+
+}
+
+
+/* =========================================
+   STORY BUTTONS - SAME ALIGNMENT
+========================================= */
+
+.story-content {
+    display: flex;
+    flex-direction: column;
+    height: 145px;
+}
+
+
+/* Title */
+
+.story-title {
+    height: 42px;
+
+    margin: 0 0 10px;
+
+    display: flex;
+    align-items: flex-start;
+
+    font-size: 16px;
+    line-height: 1.2;
+
+    overflow: hidden;
+}
+
+
+/* Buttons always at same bottom position */
+
+.story-content .read-btn,
+.story-content .delete-btn {
+    margin-top: auto;
+
+    flex-shrink: 0;
+
+    height: 38px;
+
+    padding: 0 10px;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+}
+
+
+/* Buttons in one row */
+
+.story-content {
+    align-items: flex-start;
+}
+
+
+/* Button row */
+
+.story-content .read-btn {
+    margin-right: 8px;
+}
+
+
+/* Make buttons stay side-by-side */
+
+.story-content {
+    position: relative;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .story-content {
+        height: 135px;
+    }
+
+    .story-title {
+        height: 38px;
+
+        font-size: 15px;
+    }
+
+    .story-content .read-btn,
+    .story-content .delete-btn {
+        height: 36px;
+
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   HOME STORY GRID
+========================================= */
+
+.stories-container {
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+
+/* STORY CARD */
+
+.story-card {
+
+    width: 100% !important;
+
+    min-width: 0;
+
+    margin: 0 !important;
+
+    overflow: hidden;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    box-shadow:
+        0 2px 7px rgba(0,0,0,0.10);
+
+}
+
+
+/* IMAGE */
+
+.story-image-box {
+
+    width: 100%;
+
+    height: 145px;
+
+    overflow: hidden;
+
+    background: #eee;
+}
+
+
+.story-image {
+
+    display: block;
+
+    width: 100% !important;
+
+    height: 145px !important;
+
+    object-fit: cover;
+
+    margin: 0 !important;
+}
+
+
+/* CONTENT */
+
+.story-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 125px;
+
+    padding: 9px;
+
+}
+
+
+/* TITLE */
+
+.story-title {
+
+    margin: 0;
+
+    min-height: 40px;
+
+    font-size: 16px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    overflow: hidden;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+}
+
+
+/* HIDE TEXT ON HOME */
+
+.story-text {
+
+    display: none;
+}
+
+
+/* BUTTON ROW */
+
+.story-buttons {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: auto;
+
+    width: 100%;
+}
+
+
+/* BUTTONS */
+
+.story-buttons .read-btn,
+.story-buttons .delete-btn {
+
+    margin: 0 !important;
+
+    height: 36px;
+
+    padding: 0 9px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.story-buttons .read-btn {
+
+    background: #123b91;
+
+    color: #fff;
+}
+
+
+.story-buttons .delete-btn {
+
+    background: #eee;
+
+    color: #c00000;
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+.search-box {
+
+    width: 100%;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    position: relative;
+
+    margin: 20px 0 30px;
+
+    padding: 0 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    box-sizing: border-box;
+}
+
+
+.search-box .search-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 38px;
+
+    height: 38px;
+
+    margin: 0 5px 0 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.search-box input {
+
+    flex: 1;
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 18px;
+}
+
+
+.search-box input::placeholder {
+
+    color: #777;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .stories-container {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+    }
+
+
+    .story-image-box {
+
+        height: 135px;
+    }
+
+
+    .story-image {
+
+        height: 135px !important;
+    }
+
+
+    .story-content {
+
+        min-height: 115px;
+
+        padding: 8px;
+    }
+
+
+    .story-title {
+
+        min-height: 36px;
+
+        font-size: 14px;
+    }
+
+
+    .story-buttons {
+
+        gap: 5px;
+    }
+
+
+    .story-buttons .read-btn,
+    .story-buttons .delete-btn {
+
+        height: 34px;
+
+        padding: 0 7px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =========================
+   STORY ACTION BUTTONS
+========================= */
+
+.story-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.story-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 48px;
+    padding: 0 16px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.story-actions .read-btn {
+    background: #1877f2;
+    color: white;
+}
+
+.story-actions .delete-btn {
+    background: #eeeeee;
+    color: #d00000;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+
+    .story-actions {
+        gap: 8px;
+    }
+
+    .story-actions button {
+        height: 44px;
+        padding: 0 12px;
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================
+   STORY TITLE FIX
+========================= */
+
+.story-title {
+    display: block;
+    width: 100%;
+
+    margin: 0 0 12px 0;
+    padding: 0;
+
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+
+    /* Long title ko next line par bhejo */
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    /* Title card se bahar nahi jayega */
+    box-sizing: border-box;
+}
+
+

@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>All Stories - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="stories-header">
+
+    <a
+        href="index.html"
+        class="stories-back"
+        aria-label="Back"
+    >
+        🔙
+    </a>
+
+
+    <div class="stories-header-title">
+        
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="stories-page">
+
+
+    <!-- PAGE TITLE -->
+
+    <section class="stories-page-title">
+
+        <h1>
+            All Stories
+        </h1>
+
+        <p>
+            Discover interesting stories.
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SEARCH
+    ================================================= -->
+
+    <div class="stories-search">
+
+        <span class="search-symbol">
+            🔍
+        </span>
+
+
+        <input
+            type="text"
+            id="storiesSearch"
+            placeholder="Search stories..."
+            autocomplete="off"
+        >
+
+    </div>
+
+
+
+    <!-- =================================================
+         STORIES GRID
+    ================================================= -->
+
+    <section
+        id="storiesGrid"
+        class="stories-grid"
+    >
+
+    </section>
+
+
+
+    <!-- =================================================
+         EMPTY
+    ================================================= -->
+
+    <div
+        id="storiesEmpty"
+        class="stories-empty"
+    >
+
+        <div class="empty-icon">
+            📖
+        </div>
+
+
+        <h2>
+            No Stories Found
+        </h2>
+
+
+        <p>
+            There are no stories to show.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     READ STORY MODAL
+===================================================== -->
+
+<div
+    id="storyReadModal"
+    class="story-read-modal"
+>
+
+
+    <div class="story-read-box">
+
+
+        <button
+            type="button"
+            id="closeStoryBtn"
+            class="story-read-close"
+            aria-label="Close"
+        >
+            ⌫
+        </button>
+
+
+        <img
+            id="storyReadImage"
+            src=""
+            alt="Story"
+        >
+
+
+        <div class="story-read-content">
+
+            <h2
+                id="storyReadTitle"
+            ></h2>
+
+
+            <p
+                id="storyReadText"
+            ></p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const storiesGrid =
+    document.getElementById(
+        "storiesGrid"
+    );
+
+
+const storiesEmpty =
+    document.getElementById(
+        "storiesEmpty"
+    );
+
+
+const storiesSearch =
+    document.getElementById(
+        "storiesSearch"
+    );
+
+
+const storyReadModal =
+    document.getElementById(
+        "storyReadModal"
+    );
+
+
+const storyReadImage =
+    document.getElementById(
+        "storyReadImage"
+    );
+
+
+const storyReadTitle =
+    document.getElementById(
+        "storyReadTitle"
+    );
+
+
+const storyReadText =
+    document.getElementById(
+        "storyReadText"
+    );
+
+
+const closeStoryBtn =
+    document.getElementById(
+        "closeStoryBtn"
+    );
+
+
+
+/* =====================================================
+   LOAD STORIES
+===================================================== */
+
+function getStories() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "myStories"
+            )
+        ) || [];
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Stories load error:",
+            error
+        );
+
+        return [];
+
+    }
+
+}
+
+
+let stories =
+    getStories();
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =====================================================
+   GET LIKES
+===================================================== */
+
+function getLikes(storyId) {
+
+    let likes = {};
+
+    try {
+
+        likes =
+            JSON.parse(
+                localStorage.getItem(
+                    "storyLikes"
+                )
+            ) || {};
+
+    }
+
+    catch (error) {
+
+        likes = {};
+
+    }
+
+
+    return likes[storyId] || 0;
+
+}
+
+
+
+/* =====================================================
+   GET COMMENTS
+===================================================== */
+
+function getComments(storyId) {
+
+    let comments = {};
+
+    try {
+
+        comments =
+            JSON.parse(
+                localStorage.getItem(
+                    "storyComments"
+                )
+            ) || {};
+
+    }
+
+    catch (error) {
+
+        comments = {};
+
+    }
+
+
+    return comments[storyId] || [];
+
+}
+
+
+
+/* =====================================================
+   CHECK LIKED
+===================================================== */
+
+function isStoryLiked(storyId) {
+
+    let likedStories = [];
+
+    try {
+
+        likedStories =
+            JSON.parse(
+                localStorage.getItem(
+                    "likedStories"
+                )
+            ) || [];
+
+    }
+
+    catch (error) {
+
+        likedStories = [];
+
+    }
+
+
+    return likedStories.includes(
+        storyId
+    );
+
+}
+
+
+
+/* =====================================================
+   RENDER STORIES
+===================================================== */
+
+function renderStories(list) {
+
+    storiesGrid.innerHTML = "";
+
+
+    /* No stories */
+
+    if (!list.length) {
+
+        storiesEmpty.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    storiesEmpty.style.display =
+        "none";
+
+
+
+    /* Create cards */
+
+    list.forEach(
+        function(story) {
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "story-tile";
+
+
+
+            /* Likes */
+
+            const likes =
+                getLikes(
+                    story.id
+                );
+
+
+            const liked =
+                isStoryLiked(
+                    story.id
+                );
+
+
+
+            /* Comments */
+
+            const comments =
+                getComments(
+                    story.id
+                );
+
+
+
+            /* Card HTML */
+
+            card.innerHTML = `
+
+                <!-- STORY IMAGE -->
+
+                <button
+                    type="button"
+                    class="story-image-button"
+                    onclick="openStory(${story.id})"
+                >
+
+                    <div
+                        class="story-tile-image"
+                    >
+
+                        <img
+                            src="${story.image}"
+                            alt="${escapeHTML(story.title)}"
+                        >
+
+                    </div>
+
+                </button>
+
+
+
+                <!-- STORY CONTENT -->
+
+                <div
+                    class="story-tile-content"
+                >
+
+
+                    <!-- TITLE -->
+
+                    <button
+                        type="button"
+                        class="story-title-button"
+                        onclick="openStory(${story.id})"
+                    >
+
+                        <h2>
+                            ${escapeHTML(story.title)}
+                        </h2>
+
+                    </button>
+
+
+
+                    <!-- ACTIONS -->
+
+                    <div
+                        class="story-actions"
+                    >
+
+
+                        <!-- LIKE -->
+
+                        <a
+                            href="like.html?id=${story.id}"
+                            class="like-btn ${liked ? "liked" : ""}"
+                            onclick="event.stopPropagation()"
+                        >
+
+                            <span
+                                class="like-icon"
+                            >
+                                ${liked ? "❤️" : "🤍"}
+                            </span>
+
+
+                            <span>
+                                ${likes}
+                            </span>
+
+                        </a>
+
+
+
+                        <!-- COMMENTS -->
+
+                        <a
+                            href="comments.html?id=${story.id}"
+                            class="comment-btn"
+                            onclick="event.stopPropagation()"
+                        >
+
+                            <span>
+                                💬
+                            </span>
+
+
+                            <span>
+                                ${comments.length}
+                            </span>
+
+                        </a>
+
+
+                    </div>
+
+
+
+                    <!-- READ STORY -->
+
+                    <button
+                        type="button"
+                        class="read-story-btn"
+                        onclick="openStory(${story.id})"
+                    >
+                        Read Story
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+            storiesGrid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchStories() {
+
+    const keyword =
+        storiesSearch.value
+            .toLowerCase()
+            .trim();
+
+
+    if (!keyword) {
+
+        renderStories(
+            stories
+        );
+
+        return;
+
+    }
+
+
+    const filteredStories =
+        stories.filter(
+            function(story) {
+
+                const title =
+                    String(
+                        story.title || ""
+                    )
+                    .toLowerCase();
+
+
+                const text =
+                    String(
+                        story.text || ""
+                    )
+                    .toLowerCase();
+
+
+                return (
+                    title.includes(
+                        keyword
+                    )
+                    ||
+                    text.includes(
+                        keyword
+                    )
+                );
+
+            }
+        );
+
+
+    renderStories(
+        filteredStories
+    );
+
+}
+
+
+storiesSearch.addEventListener(
+    "input",
+    searchStories
+);
+
+
+
+/* =====================================================
+   OPEN STORY
+===================================================== */
+
+function openStory(storyId) {
+
+    const story =
+        stories.find(
+            function(item) {
+
+                return (
+                    Number(item.id) ===
+                    Number(storyId)
+                );
+
+            }
+        );
+
+
+    if (!story) {
+
+        alert(
+            "Story not found."
+        );
+
+        return;
+
+    }
+
+
+    storyReadImage.src =
+        story.image;
+
+
+    storyReadImage.alt =
+        story.title;
+
+
+    storyReadTitle.textContent =
+        story.title;
+
+
+    storyReadText.textContent =
+        story.text;
+
+
+    storyReadModal.classList.add(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =====================================================
+   CLOSE STORY
+===================================================== */
+
+function closeStory() {
+
+    storyReadModal.classList.remove(
+        "show"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+closeStoryBtn.addEventListener(
+    "click",
+    closeStory
+);
+
+
+
+/* =====================================================
+   CLICK OUTSIDE READ MODAL
+===================================================== */
+
+storyReadModal.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            event.target ===
+            storyReadModal
+        ) {
+
+            closeStory();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+            closeStory();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   REFRESH STORIES
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key === "myStories" ||
+            event.key === "storyLikes" ||
+            event.key === "likedStories" ||
+            event.key === "storyComments"
+        ) {
+
+            stories =
+                getStories();
+
+
+            renderStories(
+                getFilteredStories()
+            );
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function getFilteredStories() {
+
+    const keyword =
+        storiesSearch.value
+            .toLowerCase()
+            .trim();
+
+
+    if (!keyword) {
+
+        return stories;
+
+    }
+
+
+    return stories.filter(
+        function(story) {
+
+            const title =
+                String(
+                    story.title || ""
+                )
+                .toLowerCase();
+
+
+            const text =
+                String(
+                    story.text || ""
+                )
+                .toLowerCase();
+
+
+            return (
+                title.includes(
+                    keyword
+                )
+                ||
+                text.includes(
+                    keyword
+                )
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderStories(
+    stories
+);
+
+</script>
+
+
+</body>
+
+</html>

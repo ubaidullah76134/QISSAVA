@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Stories</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+    <a
+        href="index.html"
+        class="header-logo"
+    >
+
+        <img
+            src="images/qissava-logo.png"
+            alt="QISSAVA"
+        >
+
+    </a>
+
+
+<a
+    href="add-story.html"
+    class="add-btn"
+>
+    + Add Story
+</a>
+
+
+    <a
+        href="menu.html"
+        class="menu-btn"
+        aria-label="Menu"
+    >
+        ☰
+    </a>
+
+</header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="container">
+
+
+        <!-- INTRO -->
+
+        <section class="intro">
+
+            <h1>
+                Stories
+            </h1>
+
+
+            <p>
+                Read interesting stories with pictures and text.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             SEARCH
+        ========================= -->
+
+        <div class="search-box">
+
+            <a href="search-stories.html">
+    🔍
+</a>
+
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search stories..."
+                oninput="searchStories()"
+            >
+
+        </div>
+
+
+
+        <!-- =========================
+             STORIES
+        ========================= -->
+
+        <section
+            id="storiesContainer"
+            class="stories-container"
+        >
+
+        </section>
+
+
+
+        <!-- EMPTY MESSAGE -->
+
+        <div
+            id="emptyMessage"
+            class="empty-message"
+        >
+            No stories found.
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         ADD STORY MODAL
+    ========================= -->
+
+    <div
+        id="uploadModal"
+        class="modal"
+    >
+
+
+        <div class="modal-content">
+
+
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Story
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="close-btn"
+                    onclick="closeUpload()"
+                >
+                    ⌫
+                </button>
+
+            </div>
+
+
+
+            <!-- =========================
+                 STORY FORM
+            ========================= -->
+
+            <form id="storyForm">
+
+
+                <!-- Picture -->
+
+                <label for="storyImage">
+                    Story Picture
+                </label>
+
+
+                <input
+                    type="file"
+                    id="storyImage"
+                    accept="image/*"
+                    required
+                >
+
+
+
+                <!-- Image Preview -->
+
+                <div
+                    id="imagePreview"
+                    class="image-preview"
+                >
+
+                </div>
+
+
+
+                <!-- Title -->
+
+                <label for="storyTitle">
+                    Story Title
+                </label>
+
+
+                <input
+                    type="text"
+                    id="storyTitle"
+                    placeholder="Enter story title"
+                    required
+                >
+
+
+
+                <!-- Story Text -->
+
+                <label for="storyText">
+                    Story Text
+                </label>
+
+
+                <textarea
+                    id="storyText"
+                    placeholder="Write your story..."
+                    rows="7"
+                    required
+                ></textarea>
+
+
+
+                <!-- Upload Button -->
+
+                <button
+                    type="submit"
+                    class="upload-btn"
+                >
+                    Upload Story
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         READ STORY MODAL
+    ========================= -->
+
+    <div
+        id="readModal"
+        class="read-modal"
+    >
+
+
+        <div class="read-modal-content">
+
+
+            <!-- Read Header -->
+
+            <div class="read-modal-header">
+
+
+                <h2 id="readTitle">
+                    Story
+                </h2>
+
+
+                <button
+                    type="button"
+                    class="read-close-btn"
+                    onclick="closeReadStory()"
+                >
+                    ⌫
+                </button>
+
+
+            </div>
+
+
+
+            <!-- Story Image -->
+
+            <img
+                id="readImage"
+                class="read-image"
+                src=""
+                alt="Story"
+            >
+
+
+
+            <!-- Story Text -->
+
+            <div
+                id="readText"
+                class="read-text"
+            ></div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

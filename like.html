@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Likes - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/like-comments.css"
+    >
+
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="stories-header">
+
+    <a
+        href="stories.html"
+        class="stories-back"
+    >
+        🔙
+    </a>
+
+    <div class="stories-header-title">
+        
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="likes-page">
+
+
+    <div class="likes-title">
+
+        <h1>
+            ❤️ Likes
+        </h1>
+
+        <p>
+            People who liked this story
+        </p>
+
+    </div>
+
+
+
+    <!-- =========================
+         LIKE COUNT
+    ========================= -->
+
+    <div class="like-count-card">
+
+        <div class="big-heart">
+            ❤️
+        </div>
+
+        <div>
+
+            <div
+                id="likeCount"
+                class="like-number"
+            >
+                0
+            </div>
+
+            <div class="like-label">
+                Likes
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         LIKE BUTTON
+    ========================= -->
+
+    <button
+        type="button"
+        id="likeButton"
+        class="main-like-button"
+    >
+
+        <span id="likeIcon">
+            🤍
+        </span>
+
+        <span id="likeText">
+            Like
+        </span>
+
+    </button>
+
+
+
+    <!-- =========================
+         LIKED MESSAGE
+    ========================= -->
+
+    <div
+        id="likedMessage"
+        class="liked-message"
+    >
+        You liked this story ❤️
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+   GET STORY ID
+===================================================== */
+
+const urlParams =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const storyId =
+    Number(
+        urlParams.get("id")
+    );
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const likeCount =
+    document.getElementById(
+        "likeCount"
+    );
+
+
+const likeButton =
+    document.getElementById(
+        "likeButton"
+    );
+
+
+const likeIcon =
+    document.getElementById(
+        "likeIcon"
+    );
+
+
+const likeText =
+    document.getElementById(
+        "likeText"
+    );
+
+
+const likedMessage =
+    document.getElementById(
+        "likedMessage"
+    );
+
+
+
+/* =====================================================
+   GET LIKES
+===================================================== */
+
+function getLikes() {
+
+    let likes = {};
+
+    try {
+
+        likes =
+            JSON.parse(
+                localStorage.getItem(
+                    "storyLikes"
+                )
+            ) || {};
+
+    } catch (error) {
+
+        likes = {};
+
+    }
+
+
+    return likes;
+
+}
+
+
+
+/* =====================================================
+   GET LIKED STORIES
+===================================================== */
+
+function getLikedStories() {
+
+    let likedStories = [];
+
+    try {
+
+        likedStories =
+            JSON.parse(
+                localStorage.getItem(
+                    "likedStories"
+                )
+            ) || [];
+
+    } catch (error) {
+
+        likedStories = [];
+
+    }
+
+
+    return likedStories;
+
+}
+
+
+
+/* =====================================================
+   CHECK LIKE
+===================================================== */
+
+function checkLike() {
+
+    const likedStories =
+        getLikedStories();
+
+
+    return likedStories.includes(
+        storyId
+    );
+
+}
+
+
+
+/* =====================================================
+   UPDATE PAGE
+===================================================== */
+
+function updateLikePage() {
+
+    const likes =
+        getLikes();
+
+
+    const likedStories =
+        getLikedStories();
+
+
+    const totalLikes =
+        likes[storyId] || 0;
+
+
+    const isLiked =
+        likedStories.includes(
+            storyId
+        );
+
+
+    likeCount.textContent =
+        totalLikes;
+
+
+
+    if (isLiked) {
+
+        likeIcon.textContent =
+            "❤️";
+
+        likeText.textContent =
+            "Unlike";
+
+        likeButton.classList.add(
+            "liked"
+        );
+
+        likedMessage.style.display =
+            "block";
+
+    }
+
+    else {
+
+        likeIcon.textContent =
+            "🤍";
+
+        likeText.textContent =
+            "Like";
+
+        likeButton.classList.remove(
+            "liked"
+        );
+
+        likedMessage.style.display =
+            "none";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   LIKE / UNLIKE
+===================================================== */
+
+likeButton.addEventListener(
+    "click",
+    function() {
+
+
+        if (!storyId) {
+
+            alert(
+                "Story ID not found."
+            );
+
+            return;
+
+        }
+
+
+        let likes =
+            getLikes();
+
+
+        let likedStories =
+            getLikedStories();
+
+
+
+        /* =========================
+           UNLIKE
+        ========================= */
+
+        if (
+            likedStories.includes(
+                storyId
+            )
+        ) {
+
+
+            likes[storyId] =
+                Math.max(
+                    0,
+                    (likes[storyId] || 0) - 1
+                );
+
+
+            likedStories =
+                likedStories.filter(
+                    function(id) {
+
+                        return (
+                            id !== storyId
+                        );
+
+                    }
+                );
+
+        }
+
+
+        /* =========================
+           LIKE
+        ========================= */
+
+        else {
+
+
+            likes[storyId] =
+                (likes[storyId] || 0) + 1;
+
+
+            likedStories.push(
+                storyId
+            );
+
+        }
+
+
+
+        /* =========================
+           SAVE
+        ========================= */
+
+        localStorage.setItem(
+            "storyLikes",
+            JSON.stringify(
+                likes
+            )
+        );
+
+
+        localStorage.setItem(
+            "likedStories",
+            JSON.stringify(
+                likedStories
+            )
+        );
+
+
+
+        updateLikePage();
+
+    }
+);
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+if (!storyId) {
+
+    likeButton.disabled = true;
+
+    likeText.textContent =
+        "Story not selected";
+
+}
+else {
+
+    updateLikePage();
+
+}
+
+</script>
+
+
+</body>
+
+</html>

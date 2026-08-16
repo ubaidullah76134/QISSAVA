@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add Story - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+<script src="js/auth.js"></script>
+
+</head>
+
+
+<body>
+
+
+<header class="add-story-header">
+
+    <a
+        href="index.html"
+        class="add-story-back"
+    >
+        🔙
+    </a>
+
+    <div class="add-story-header-title">
+        Add Story
+    </div>
+
+</header>
+
+
+
+<main class="add-story-container">
+
+    <div class="add-story-card">
+
+
+        <div class="add-story-logo">
+
+            <img
+                src="images/qissava-logo.png"
+                alt="QISSAVA"
+            >
+
+        </div>
+
+
+        <h1>
+            Create a Story
+        </h1>
+
+
+        <p class="add-story-subtitle">
+            Share a picture and your story.
+        </p>
+
+
+
+        <form id="addStoryForm">
+
+
+            <!-- Picture -->
+
+            <label for="storyImage">
+                Picture
+            </label>
+
+            <input
+                type="file"
+                id="storyImage"
+                accept="image/*"
+                required
+            >
+
+
+            <!-- Preview -->
+
+            <div
+                id="storyPreview"
+                class="story-preview"
+            ></div>
+
+
+
+            <!-- Title -->
+
+            <label for="storyTitle">
+                Story Title
+            </label>
+
+            <input
+                type="text"
+                id="storyTitle"
+                placeholder="Enter story title"
+                maxlength="100"
+                required
+            >
+
+
+
+            <!-- Story -->
+
+            <label for="storyText">
+                Story
+            </label>
+
+            <textarea
+                id="storyText"
+                placeholder="Write your story..."
+                maxlength="5000"
+                required
+            ></textarea>
+
+
+
+            <!-- Publish -->
+
+            <button
+                type="submit"
+                class="publish-story-btn"
+            >
+                Publish Story
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+const addStoryForm =
+    document.getElementById("addStoryForm");
+
+const storyImage =
+    document.getElementById("storyImage");
+
+const storyPreview =
+    document.getElementById("storyPreview");
+
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+storyImage.addEventListener(
+    "change",
+    function() {
+
+        const file =
+            this.files[0];
+
+
+        storyPreview.innerHTML = "";
+
+
+        if (!file) {
+
+            return;
+
+        }
+
+
+        if (!file.type.startsWith("image/")) {
+
+            alert("Please select an image.");
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event) {
+
+                storyPreview.innerHTML = `
+
+                    <img
+                        src="${event.target.result}"
+                        alt="Story Preview"
+                    >
+
+                `;
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+
+/* =========================
+   PUBLISH STORY
+========================= */
+
+addStoryForm.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const file =
+            storyImage.files[0];
+
+
+        const title =
+            document
+                .getElementById("storyTitle")
+                .value
+                .trim();
+
+
+        const text =
+            document
+                .getElementById("storyText")
+                .value
+                .trim();
+
+
+        if (!file) {
+
+            alert("Please select a picture.");
+
+            return;
+
+        }
+
+
+        if (!title) {
+
+            alert("Please enter story title.");
+
+            return;
+
+        }
+
+
+        if (!text) {
+
+            alert("Please write your story.");
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event) {
+
+
+                const newStory = {
+
+                    id: Date.now(),
+
+                    image: event.target.result,
+
+                    title: title,
+
+                    text: text,
+
+                    createdAt:
+                        new Date().toISOString()
+
+                };
+
+
+                let stories = [];
+
+
+                try {
+
+                    stories =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "myStories"
+                            )
+                        ) || [];
+
+                } catch(error) {
+
+                    stories = [];
+
+                }
+
+
+                stories.unshift(
+                    newStory
+                );
+
+
+                localStorage.setItem(
+                    "myStories",
+                    JSON.stringify(stories)
+                );
+
+
+                alert(
+                    "Story published successfully!"
+                );
+
+
+                window.location.href =
+                    "index.html";
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Logout - QISSAVA</title>
+
+    <link
+        rel="stylesheet"
+        href="css/S-L.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="logout-header">
+
+    <a
+        href="index.html"
+        class="logout-back"
+    >
+        🔙
+    </a>
+
+    <div class="logout-header-title">
+        Logout
+    </div>
+
+</header>
+
+
+
+<main class="logout-container">
+
+    <div class="logout-card">
+
+
+        <div class="logout-icon">
+            🚪
+        </div>
+
+
+        <h1>
+            Logout
+        </h1>
+
+
+        <p>
+            Are you sure you want to logout?
+        </p>
+
+
+        <button onclick="logoutUser()">
+    Logout
+</button>
+
+
+        <a
+            href="index.html"
+            class="logout-cancel"
+        >
+            Cancel
+        </a>
+
+
+    </div>
+
+</main>
+
+
+
+<script>
+
+
+function logoutUser() {
+
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.replace("login.html");
+}
+
+</script>
+
+
+</body>
+
+</html>
